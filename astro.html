@@ -153,6 +153,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>
 
     <script>
+        (function() {
+  // Disable right-click
+  document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
+
+  // Disable F12 (Dev Tools shortcut) and Ctrl+Shift+I
+  document.onkeydown = function(e) {
+    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73)) {
+      e.preventDefault();
+      alert('DevTools is disabled');
+    }
+  };
+
+  // Detect if DevTools is open based on screen dimensions
+  var checkDevTools = setInterval(function() {
+    const widthThreshold = 200;
+    const heightThreshold = 150;
+    if (window.innerWidth - window.outerWidth > widthThreshold || window.innerHeight - window.outerHeight > heightThreshold) {
+      alert('DevTools is open!');
+      window.location = 'about:blank'; // Redirect to blank page
+    }
+  }, 1000);
+
+  // Detect if console is being used
+  Object.defineProperty(console, 'log', {
+    set: function(value) {
+      alert('Console log is disabled');
+      window.location = 'about:blank'; // Redirect to blank page
+    }
+  });
+
+  // Detect mouse movements to avoid inspecting elements
+  let mouseMovement = 0;
+  document.onmousemove = function(event) {
+    mouseMovement++;
+    if (mouseMovement > 500) {
+      alert('Stop trying to inspect!');
+      window.location = 'about:blank'; // Redirect to blank page
+    }
+  };
+})();
         // Script for closing the popup
         function closePopup() {
             document.getElementById("popup").style.display = "none";
