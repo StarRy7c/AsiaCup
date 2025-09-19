@@ -5,581 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video Player</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
       background: #000;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* Header */
-    .header {
-      background: #fff;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      border-bottom: 1px solid #e0e0e0;
-      position: relative;
-      z-index: 100;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .close-btn, .dropdown-btn, .share-btn, .menu-btn {
-      width: 24px;
-      height: 24px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .header-title {
-      flex: 1;
+      color: white;
+      font-family: Arial, sans-serif;
       text-align: center;
-      margin: 0 16px;
     }
 
-    .header-title h1 {
-      font-size: 18px;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .header-subtitle {
-      font-size: 12px;
-      color: #666;
-      margin-top: 2px;
-    }
-
-    /* Video Container */
     .video-container {
-      width: 100%;
-      height: calc(100vh - 60px - 140px);
-      background: #000;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     iframe {
       width: 100%;
-      height: 50%;
+      height: 500px;
       border: none;
-      background: #000;
-    }
-
-    .video-error {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .error-icon {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .error-icon::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 40px;
-      height: 4px;
-      background: #fff;
-    }
-
-    .error-icon::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 20px;
-      height: 20px;
-      border: 4px solid #fff;
-      border-radius: 4px;
-      background: none;
-    }
-
-    .error-text {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .error-subtext {
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    /* Bottom Section */
-    .bottom-section {
-      background: #000;
-      height: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      gap: 16px;
+      background: #111;
+      border-radius: 10px;
     }
 
     .telegram-btn {
+      display: inline-block;
+      margin-top: 20px;
       background: #0088cc;
-      color: white;
-      border: none;
-      padding: 12px 32px;
-      border-radius: 25px;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: bold;
+      text-decoration: none;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+      transition: background 0.3s;
     }
-
     .telegram-btn:hover {
-      background: #006b9e;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0, 136, 204, 0.4);
+      background: #0077b6;
     }
 
-    .info-message {
-      background: #ffd700;
-      color: #333;
-      padding: 12px 16px;
-      border-radius: 8px;
+    .info-box {
+      background: #ffeb3b;
+      color: #000;
+      padding: 12px;
+      margin: 20px auto;
+      border-radius: 6px;
+      max-width: 500px;
       font-size: 14px;
-      text-align: center;
-      line-height: 1.4;
-      max-width: 90%;
     }
 
-    .copy-link-btn {
+    .copy-btn {
+      margin-top: 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
       background: #444;
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .copy-link-btn:hover {
-      background: #555;
-    }
-
-    /* URL Input Section */
-    .url-input-section {
-      position: fixed;
-      bottom: -100%;
-      left: 0;
-      right: 0;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-      transition: bottom 0.3s ease;
-      z-index: 200;
-    }
-
-    .url-input-section.active {
-      bottom: 0;
-    }
-
-    .url-input-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .url-input-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .url-close-btn {
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #666;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .url-input-group {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .url-input {
-      flex: 1;
-      padding: 12px 16px;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-
-    .url-input:focus {
-      border-color: #0088cc;
-    }
-
-    .load-btn {
-      background: #0088cc;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .load-btn:hover {
-      background: #006b9e;
-    }
-
-    .preset-links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .preset-link {
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
-      padding: 12px 16px;
-      border-radius: 8px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 14px;
-      color: #333;
-      transition: all 0.3s ease;
-    }
-
-    .preset-link:hover {
-      background: #e8f4fd;
-      border-color: #0088cc;
-    }
-
-    /* Icons */
-    .icon {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .header-title h1 {
-        font-size: 16px;
-      }
-      
-      .video-container {
-        height: calc(50vh - 30px - 80px);
-      }
-      
-      .bottom-section {
-        height: 160px;
-        padding: 16px;
-      }
-      
-      .info-message {
-        font-size: 13px;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="header-left">
-      <button class="close-btn" onclick="window.history.back()">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </svg>
-      </button>
-      <button class="dropdown-btn" onclick="toggleUrlInput()">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M7 10l5 5 5-5z"/>
-        </svg>
-      </button>
-    </div>
-    
-    <div class="header-title">
-      <h1>Video Player</h1>
-      <div class="header-subtitle">starry7c.github.io</div>
-    </div>
-    
-    <div class="header-right">
-      <button class="share-btn" onclick="shareVideo()">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
-        </svg>
-      </button>
-      <button class="menu-btn" onclick="showMenu()">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-        </svg>
-      </button>
-    </div>
-  </div>
+  <h2>Video Player</h2>
 
-  <!-- Video Container -->
   <div class="video-container">
-    <iframe
-      id="contentFrame"
-      sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-      allow="encrypted-media"
-      allowfullscreen="true"
-      scrolling="no"
-      src="https://tataplays.site/sonyliv.html?id=300255">
-    </iframe>
-    
-    <div class="video-error" id="videoError">
-      <div class="error-icon"></div>
-      <div class="error-text">This video file cannot be played.</div>
-      <div class="error-subtext">(Error Code: 232011)</div>
-    </div>
+    <iframe id="videoFrame" src="https://tataplays.site/sonyliv.html?id=300255" allowfullscreen></iframe>
   </div>
 
-  <!-- Bottom Section -->
-  <div class="bottom-section">
-    <button class="telegram-btn" onclick="joinTelegram()">
-      Join Telegram
-    </button>
-    
-    <div class="info-message">
-      To open the link, copy it and paste it into your phone's Chrome browser, otherwise it might not work.
-    </div>
-    
-    <button class="copy-link-btn" onclick="copyCurrentLink()">
-      Copy Link
-    </button>
+  <a class="telegram-btn" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank">Join Telegram</a>
+
+  <div class="info-box">
+    To open the link, copy it and paste it into your phone's Chrome browser, otherwise it might not work.
   </div>
 
-  <!-- URL Input Section -->
-  <div class="url-input-section" id="urlInputSection">
-    <div class="url-input-header">
-      <div class="url-input-title">Load Custom Stream</div>
-      <button class="url-close-btn" onclick="toggleUrlInput()">×</button>
-    </div>
-    
-    <div class="url-input-group">
-      <input type="text" id="customUrl" class="url-input" placeholder="Enter stream URL...">
-      <button class="load-btn" onclick="loadCustomUrl()">Load</button>
-    </div>
-    
-    <div class="preset-links">
-      <button class="preset-link" onclick="loadPresetUrl('https://starry7c.github.io/CrixzyLive/?stream=https://dqjnt5d1aglzv.cloudfront.net/out/v1/c17faa9ad30f4d42b6bbdb161c8717d6/index.m3u8')">
-        Sony English HD
-      </button>
-      <button class="preset-link" onclick="loadPresetUrl('https://starry7c.github.io/Willow-p/?url=https://ev-fast-mpd.starzplayarabia.com/live/eds/CricLife2/DASH/CricLife2.mpd&kid=48bef83b4c6a3c5189b01b0126210da4&key=bd085230b7b09e50954fe0af111a8a9f')">
-        TNT Sports 4
-      </button>
-      <button class="preset-link" onclick="loadPresetUrl('https://tinyurl.com/Willow-HD-Live')">
-        Cricbuzz Willow
-      </button>
-      <button class="preset-link" onclick="loadPresetUrl('https://starry7c.github.io/Sony-sport-eng/')">
-        Sony Ten 5 English
-      </button>
-    </div>
-  </div>
+  <button class="copy-btn" onclick="copyLink()">Copy Link</button>
 
   <script>
-    // Default stream URL
-    const DEFAULT_STREAM_URL = 'https://tataplays.site/sonyliv.html?id=300255';
-    let currentStreamUrl = DEFAULT_STREAM_URL;
+    // Default link
+    const defaultLink = "https://tataplays.site/sonyliv.html?id=300255";
 
-    // Get URL parameter if provided
-    function getUrlParameter(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
+    // Function to dynamically set iframe source
+    function setVideo(link) {
+      document.getElementById("videoFrame").src = link || defaultLink;
     }
 
-    // Load stream from URL parameter or default
-    function initializeStream() {
-      const providedUrl = getUrlParameter('url') || getUrlParameter('stream');
-      if (providedUrl) {
-        currentStreamUrl = decodeURIComponent(providedUrl);
-        document.getElementById('contentFrame').src = currentStreamUrl;
-      }
+    // Copy iframe link
+    function copyLink() {
+      const link = document.getElementById("videoFrame").src;
+      navigator.clipboard.writeText(link).then(() => {
+        alert("Link copied: " + link);
+      });
     }
-
-    // Toggle URL input section
-    function toggleUrlInput() {
-      const section = document.getElementById('urlInputSection');
-      section.classList.toggle('active');
-    }
-
-    // Load custom URL
-    function loadCustomUrl() {
-      const customUrl = document.getElementById('customUrl').value.trim();
-      if (customUrl) {
-        currentStreamUrl = customUrl;
-        document.getElementById('contentFrame').src = customUrl;
-        document.getElementById('customUrl').value = '';
-        toggleUrlInput();
-        
-        // Update browser URL
-        const newUrl = new URL(window.location);
-        newUrl.searchParams.set('url', encodeURIComponent(customUrl));
-        window.history.pushState({}, '', newUrl);
-      }
-    }
-
-    // Load preset URL
-    function loadPresetUrl(url) {
-      currentStreamUrl = url;
-      document.getElementById('contentFrame').src = url;
-      toggleUrlInput();
-      
-      // Update browser URL
-      const newUrl = new URL(window.location);
-      newUrl.searchParams.set('url', encodeURIComponent(url));
-      window.history.pushState({}, '', newUrl);
-    }
-
-    // Copy current link
-    function copyCurrentLink() {
-      const currentUrl = window.location.href;
-      
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(currentUrl).then(() => {
-          showToast('Link copied to clipboard!');
-        });
-      } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = currentUrl;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        showToast('Link copied to clipboard!');
-      }
-    }
-
-    // Share video
-    function shareVideo() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Video Player',
-          text: 'Watch live stream',
-          url: window.location.href
-        });
-      } else {
-        copyCurrentLink();
-      }
-    }
-
-    // Join Telegram
-    function joinTelegram() {
-      window.open('https://telegram.me/+q1P8ArfVAlU1YzZl', '_blank');
-    }
-
-    // Show menu (placeholder)
-    function showMenu() {
-      alert('Menu options coming soon!');
-    }
-
-    // Show toast notification
-    function showToast(message) {
-      // Simple toast implementation
-      const toast = document.createElement('div');
-      toast.style.cssText = `
-        position: fixed;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #333;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 25px;
-        font-size: 14px;
-        z-index: 1000;
-        transition: all 0.3s ease;
-      `;
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => document.body.removeChild(toast), 300);
-      }, 2000);
-    }
-
-    // Handle iframe load errors
-    document.getElementById('contentFrame').addEventListener('error', function() {
-      document.getElementById('videoError').style.display = 'flex';
-    });
-
-    // Handle Enter key in URL input
-    document.getElementById('customUrl').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        loadCustomUrl();
-      }
-    });
-
-    // Close URL input when clicking outside
-    document.addEventListener('click', function(e) {
-      const section = document.getElementById('urlInputSection');
-      const dropdown = document.querySelector('.dropdown-btn');
-      
-      if (!section.contains(e.target) && !dropdown.contains(e.target) && section.classList.contains('active')) {
-        section.classList.remove('active');
-      }
-    });
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      initializeStream();
-    });
-
-    // Disable right-click and developer tools
-    document.addEventListener('contextmenu', event => event.preventDefault());
-    document.addEventListener('keydown', event => {
-      if (event.keyCode == 123 || 
-          (event.ctrlKey && event.shiftKey && event.keyCode == 73) ||
-          (event.ctrlKey && event.shiftKey && event.keyCode == 74) ||
-          (event.ctrlKey && event.shiftKey && event.keyCode == 67) ||
-          (event.ctrlKey && event.keyCode == 85)) {
-        event.preventDefault();
-      }
-    });
   </script>
 
 </body>
