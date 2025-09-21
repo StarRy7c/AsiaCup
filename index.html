@@ -13,108 +13,67 @@
 </html><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Player</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crixzy</title>
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    background:#000;
+    font-family:Arial, sans-serif;
+    text-align:center;
+  }
 
-    .video-container {
-      margin-top: 40px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+  /* Container that crops top and bottom of the iframe */
+  .video-wrapper{
+    position:relative;
+    width:100%;
+    height:30vh;          /* set iframe height you want */
+    overflow:hidden;
+  }
+  .video-wrapper iframe{
+    position:absolute;
+    top:-60px;            /* crop the top area */
+    left:0;
+    width:100%;
+    height:calc(60vh + 120px); /* original height + top+bottom crop */
+    border:none;
+  }
 
-    iframe {
-      width: 100%;
-      height: 250px;
-      border: none;
-      background: #111;
-      border-radius: 10px;
-    }
-
-    .telegram-btn {
-      display: inline-block;
-      margin-top: 20px;
-      background: #0088cc;
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .telegram-btn:hover {
-      background: #0077b6;
-    }
-
-    .info-box {
-      background: #ffeb3b;
-      color: #000;
-      padding: 12px;
-      margin: 20px auto;
-      border-radius: 6px;
-      max-width: 500px;
-      font-size: 14px;
-    }
-
-    .copy-btn {
-      margin-top: 10px;
-      background: #333;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .copy-btn:hover {
-      background: #444;
-    }
-  </style>
+  /* Join button outside iframe */
+  .join-telegram{
+    display:inline-block;
+    margin:20px auto;
+    padding:12px 25px;
+    background:#0088cc;
+    color:#fff;
+    font-size:1.2rem;
+    font-weight:bold;
+    text-decoration:none;
+    border-radius:8px;
+    transition:background 0.3s;
+  }
+  .join-telegram:hover{
+    background:#00aaff;
+  }
+</style>
 </head>
 <body>
 
-  <h2>Video Player</h2>
-
-  <div class="video-container">
-    <iframe id="videoFrame" src="https://tataplays.site/sonyliv.html?id=300255" allowfullscreen></iframe>
+  <div class="video-wrapper">
+    <iframe
+      src="https://live.dtvxtream.com/multi-url?id=300255"
+      sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+      allow="encrypted-media"
+      allowfullscreen
+      scrolling="no">
+    </iframe>
   </div>
 
-  <a class="telegram-btn" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank">Join Telegram</a>
+  <a href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank" class="join-telegram">
+    Join Telegram
+  </a>
 
-  <div class="info-box">
-    To open the link, copy it and paste it into your phone's Chrome browser, otherwise it might not work.
-  </div>
-
-  <button class="copy-btn" onclick="copyLink()">Copy Link</button>
-
-  <script>
-    // Default link
-    const defaultLink = "https://tataplays.site/sonyliv.html?id=300255";
-
-    // Function to dynamically set iframe source
-    function setVideo(link) {
-      document.getElementById("videoFrame").src = link || defaultLink;
-    }
-
-    // Copy iframe link
-    function copyLink() {
-      const link = document.getElementById("videoFrame").src;
-      navigator.clipboard.writeText(link).then(() => {
-        alert("Link copied: " + link);
-      });
-    }
-  </script></body>
+</body>
 </html>
