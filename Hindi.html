@@ -1,18 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0; url=https://t.me/+q1P8ArfVAlU1YzZl">
-  <script>
-    // Fallback in case the meta refresh doesn't work
-    window.location.href = "https://t.me/+q1P8ArfVAlU1YzZl";
-  </script>
-</head>
-<body>
-  <p>Redirecting… If you are not redirected, <a href="https://t.me/+q1P8ArfVAlU1YzZl">click here</a>.</p>
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,7 +209,14 @@
   <h2>Video Player</h2>
 
   <div class="video-container">
-    <iframe id="videoFrame" src="https://user464.ifrem.net/iframe/frame.php" allowfullscreen></iframe>
+    <iframe id="videoFrame"
+            src="https://cricketstan.github.io/Channel-13"
+            sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+            frameborder="0"
+            gesture="media"
+            allow="encrypted-media"
+            allowfullscreen="true"
+            scrolling="no"></iframe>
   </div>
 
   <a class="telegram-btn" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank">Join Telegram</a>
@@ -275,7 +267,7 @@
     function updateShareLinks() {
         const pageUrl = window.location.href;
         const message = "click on the link to watch asia cup live follow on telegram";
-
+        
         // For WhatsApp: message and URL together in the text parameter
         const whatsappText = encodeURIComponent(message + " " + pageUrl);
         const whatsappLink = `https://api.whatsapp.com/send?text=${whatsappText}`;
@@ -317,4 +309,6 @@
 
 </body>
 </html>
+
+
 
