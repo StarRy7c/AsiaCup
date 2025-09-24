@@ -128,7 +128,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
       animation: fadeIn 0.3s ease-out;
     }
-    
+
     @keyframes fadeIn {
         from { opacity: 0; transform: scale(0.9); }
         to { opacity: 1; transform: scale(1); }
@@ -183,7 +183,7 @@
       background: #0077b6;
       transform: scale(1.02);
     }
-    
+
     .popup-already-joined {
       display: block;
       margin-top: 12px;
@@ -198,7 +198,7 @@
     .popup-already-joined:hover {
       opacity: 1;
     }
-    
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,9 +215,9 @@
   <a class="telegram-btn" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank">Join Telegram</a>
 
   <div class="info-box">
-    Sharing is caring! If you enjoy this stream, please share it with your friends and family. It helps us a lot! 
+    Sharing is caring! If you enjoy this stream, please share it with your friends and family. It helps us a lot!
   </div>
-  
+
   <div class="direct-share-container">
     <a id="whatsappShare" class="share-option whatsapp" href="#" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -245,7 +245,7 @@
       <a class="popup-already-joined" onclick="closePopup()">Already Joined</a>
     </div>
   </div>
-  
+
 
   <script>
     const defaultLink = "https://starry7c.github.io/CrixzyLive/?stream=https://in-mc-fdlive.fancode.com/mumbai/136745_hindi_hls_3d0880779651715ta-di_h264/index.m3u8";
@@ -258,12 +258,17 @@
 
     // --- Share Button Logic ---
     function updateShareLinks() {
-        const link = window.location.href; // Share the page URL for a better experience
-        const encodedLink = encodeURIComponent(link);
-        const shareText = encodeURIComponent("Hey! Check out this awesome live stream I found:");
+        const pageUrl = window.location.href;
+        const message = "click on the link to watch asia cup live follow on telegram";
+        
+        // For WhatsApp: message and URL together in the text parameter
+        const whatsappText = encodeURIComponent(message + " " + pageUrl);
+        const whatsappLink = `https://api.whatsapp.com/send?text=${whatsappText}`;
 
-        const whatsappLink = `https://api.whatsapp.com/send?text=${shareText}%20${encodedLink}`;
-        const telegramLink = `https://t.me/share/url?url=${encodedLink}&text=${shareText}`;
+        // For Telegram: separate URL and text for better preview
+        const telegramUrl = encodeURIComponent(pageUrl);
+        const telegramText = encodeURIComponent(message);
+        const telegramLink = `https://t.me/share/url?url=${telegramUrl}&text=${telegramText}`;
 
         document.getElementById('whatsappShare').href = whatsappLink;
         document.getElementById('telegramShare').href = telegramLink;
@@ -290,10 +295,11 @@
             closePopup();
         }
     });
-        <a href="https://www.freecounterstat.com" title="website hits counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=h39cnaqxrdaeatb6lbmyly49lw2tf743" border="0" title="website hits counter" alt="website hits counter" style="position: fixed; bottom: 5px; right: 5px; opacity: 0.7;"></a>
-    
-    
   </script>
+
+  <!-- This counter was inside the script tag, which caused an error. I moved it here. -->
+  <a href="https://www.freecounterstat.com" title="website hits counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=h39cnaqxrdaeatb6lbmyly49lw2tf743" border="0" title="website hits counter" alt="website hits counter" style="position: fixed; bottom: 5px; right: 5px; opacity: 0.7;"></a>
 
 </body>
 </html>
+
