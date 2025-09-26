@@ -225,6 +225,31 @@
         .popup-already-joined:hover {
             opacity: 1;
         }
+        
+        /* --- START: New Iframe Styles --- */
+        .iframe-container {
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .responsive-iframe {
+            border: 2px solid #555;
+            border-radius: 8px;
+            /* This is the default size for mobile */
+            width: 100%;
+            max-width: 500px;
+            height: 250px; 
+        }
+
+        /* Media Query for larger screens (desktops, tablets) */
+        @media screen and (min-width: 768px) {
+            .responsive-iframe {
+                /* This size applies only when screen width is 768px or more */
+                width: 700px;
+                height: 300px;
+            }
+        }
+        /* --- END: New Iframe Styles --- */
     </style>
 </head>
 <body>
@@ -252,6 +277,12 @@
             Share on Telegram
         </a>
     </div>
+
+    <!-- START: New Iframe Section -->
+    <div class="iframe-container">
+        <iframe class="responsive-iframe" src="https://www.example.com" title="Responsive Iframe Example"></iframe>
+    </div>
+    <!-- END: New Iframe Section -->
 
     <div id="telegramPopup" class="popup-overlay">
         <div class="popup-content">
