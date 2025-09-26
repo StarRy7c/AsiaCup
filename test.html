@@ -311,7 +311,7 @@
         function updateShareLinks() {
             const link = window.location.href; // Share the page URL
             const encodedLink = encodeURIComponent(link);
-            const shareText = encodeURIComponent("Hey! Check out this awesome live stream I found:");
+            const shareText = encodeURIComponent("Hey! 👋🏻 follow us on a telegram https://t.me/+q1P8ArfVAlU1YzZl whatch asia cup live 👉🏻 :");
 
             const whatsappLink = `https://api.whatsapp.com/send?text=${shareText}%20${encodedLink}`;
             const telegramLink = `https://t.me/share/url?url=${encodedLink}&text=${shareText}`;
@@ -371,9 +371,9 @@
             controls.addEventListener("error", onUIErrorEvent);
 
             // --- Player Configuration ---
-            const mpdUrl = 'https://sundirectgo-live.pc.cdn.bitgravity.com/hd21/dth.mpd';
-            const kid = '8268467a7a974698b18c9e63b13f73a4';
-            const key = '6affb3ad6e781bc4afafad402e1d4510';
+            const mpdUrl = 'https://sundirectgo-live.pc.cdn.bitgravity.com/src35/dth.mpd';
+            const kid = '162e06450b01432dbf9a98cc8c06e637';
+            const key = 'fb10bbb01a468e7c41614fc0803648aa';
 
             player.configure({ drm: { clearKeys: { [kid]: key } } });
             try {
