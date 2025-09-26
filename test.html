@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,8 +62,8 @@
         /* Main Controls Container */
         .shaka-controls-container {
             background: rgba(20, 20, 20, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); /* For Safari */
+            /* backdrop-filter: blur(8px); -- Removed to fix the blur issue */
+            /* -webkit-backdrop-filter: blur(8px); -- Removed for Safari */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -85,11 +84,11 @@
 
         /* Seek and Volume Bars */
         .shaka-seek-bar-container, .shaka-volume-bar-container {
-            height: 6px;
+            height: 4px; /* Made the bar thinner */
             transition: height 0.2s ease;
         }
         .shaka-controls-container:hover .shaka-seek-bar-container {
-            height: 8px; /* Make it slightly thicker on hover */
+            height: 6px; /* Slightly thicker on hover */
         }
 
         /* Custom Colors for Seek & Volume Bars */
@@ -98,7 +97,7 @@
              border-radius: 4px;
         }
         .shaka-volume-bar-level {
-             background: #FFFFFF;
+             background: #3898FF; /* Changed from white to theme blue */
              border-radius: 4px;
         }
 
@@ -508,9 +507,4 @@
         
         function onPlayerErrorEvent(errorEvent) { onPlayerError(errorEvent.detail); }
         function onPlayerError(error) { console.error("🚫 Shaka Player Error", error); }
-        function onUIErrorEvent(errorEvent) { onPlayerError(errorEvent.detail); }
-        document.addEventListener("shaka-ui-loaded", init);
-    </script>
-    
-    <!-- Counter -->
-    <a
+        function onUIErrorEvent(errorEvent) { onPlayerError(errorEvent.detail); 
