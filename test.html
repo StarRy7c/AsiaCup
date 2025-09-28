@@ -1,4 +1,4 @@
-><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -225,31 +225,6 @@
         .popup-already-joined:hover {
             opacity: 1;
         }
-        
-        /* --- START: New Iframe Styles --- */
-        .iframe-container {
-            margin: 30px auto;
-            padding: 0 15px;
-        }
-
-        .responsive-iframe {
-            border: 2px solid #555;
-            border-radius: 8px;
-            /* This is the default size for mobile */
-            width: 100%;
-            max-width: 500px;
-            height: 250px; 
-        }
-
-        /* Media Query for larger screens (desktops, tablets) */
-        @media screen and (min-width: 768px) {
-            .responsive-iframe {
-                /* This size applies only when screen width is 768px or more */
-                width: 700px;
-                height: 300px;
-            }
-        }
-        /* --- END: New Iframe Styles --- */
     </style>
 </head>
 <body>
@@ -257,7 +232,7 @@
         <video autoplay data-shaka-player id="video" poster="https://placehold.co/1280x720/000000/FFFFFF?text=Loading+Player..." preload="auto"></video>
     </div>
 
-    <a class="telegram-btn-strip" href="https://t.me/+OACGYQBHrIJmM2Y1" target="_blank">Join Telegram</a>
+    <a class="telegram-btn-strip" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank">Join Telegram</a>
 
     <div class="info-box">
         Sharing is caring! If you enjoy this stream, please share it with your friends and family. It helps us a lot! ❤️
@@ -278,19 +253,13 @@
         </a>
     </div>
 
-    <!-- START: New Iframe Section -->
-    <div class="iframe-container">
-        <iframe class="responsive-iframe" src="https://www.example.com" title="Responsive Iframe Example"></iframe>
-    </div>
-    <!-- END: New Iframe Section -->
-
     <div id="telegramPopup" class="popup-overlay">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="32" fill="#37AEE2"></circle><path d="M46 17L18 28.5385L28.5 33.5M46 17L35.5 48L28.5 33.5M46 17L28.5 33.5" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             <h3>Join Our Community</h3>
             <p>Stay updated with the latest content by joining our Telegram channel.</p>
-            <a class="popup-join-btn" href="https://t.me/+OACGYQBHrIJmM2Y1" target="_blank" onclick="closePopup()">Join Now</a>
+            <a class="popup-join-btn" href="https://t.me/+q1P8ArfVAlU1YzZl" target="_blank" onclick="closePopup()">Join Now</a>
             <a class="popup-already-joined" onclick="closePopup()">Already Joined</a>
         </div>
     </div>
@@ -342,7 +311,7 @@
         function updateShareLinks() {
             const link = window.location.href; // Share the page URL
             const encodedLink = encodeURIComponent(link);
-            const shareText = encodeURIComponent("Hey! 👋🏻 follow us on a telegram https://t.me/+OACGYQBHrIJmM2Y1 whatch asia cup live 👉🏻 :");
+            const shareText = encodeURIComponent("Hey! Check out this awesome live stream I found:");
 
             const whatsappLink = `https://api.whatsapp.com/send?text=${shareText}%20${encodedLink}`;
             const telegramLink = `https://t.me/share/url?url=${encodedLink}&text=${shareText}`;
@@ -363,7 +332,7 @@
                 button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/></svg>`;
                 button.setAttribute('aria-label', 'Join Telegram');
                 this.eventManager.listen(button, 'click', () => {
-                    window.open('https://t.me/+OACGYQBHrIJmM2Y1', '_blank');
+                    window.open('https://t.me/+q1P8ArfVAlU1YzZl', '_blank');
                 });
                 this.parent.appendChild(button);
             }
@@ -402,9 +371,9 @@
             controls.addEventListener("error", onUIErrorEvent);
 
             // --- Player Configuration ---
-            const mpdUrl = 'https://sundirectgo-live.pc.cdn.bitgravity.com/src35/dth.mpd';
-            const kid = '162e06450b01432dbf9a98cc8c06e637';
-            const key = 'fb10bbb01a468e7c41614fc0803648aa';
+            const mpdUrl = 'https://a166aivottlinear-a.akamaihd.net/OTTB/sin-nitro/live/dash/enc/lscoafr17s/out/v1/d18bb88c0227432d8f14e5f28f78ef99/cenc.mpd';
+            const kid = '47535227b6c07c68a43fd83a45f24308';
+            const key = '4d0a2b3d0cbc3e66d269fab549beb05a';
 
             player.configure({ drm: { clearKeys: { [kid]: key } } });
             try {
